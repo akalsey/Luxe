@@ -145,3 +145,14 @@ function luxe_admin_settings() {
   
   return system_settings_form($form);
 }
+
+function luxe_menu() {
+  $items['admin/config/system/luxe'] = array(
+    'title' => t('Luxe'),
+    'description' => t('Headlines and content for your login and registration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('luxe_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
