@@ -34,7 +34,7 @@ function luxe_form_alter(&$form, &$form_state, $form_id) {
       );
       break;
     case 'user_pass':
-      drupal_set_title(variable_get('luxe_recover_title', 'Forgot my password'));
+      drupal_set_title(variable_get('luxe_recover_title', 'Forgot your password?'));
       $form['lost_password'] = array(
         '#markup' => '<div class="login-forgot">' . l(t('No? Go log in then.'), 'user') . '</div>',
       );
@@ -140,7 +140,7 @@ function luxe_admin_settings() {
     '#type' => 'textfield',
     '#multiple' => true,
     '#title' => t('Password Recovery Form Title'),
-    '#default_value' => variable_get('luxe_recover_title', 'Sign up'),
+    '#default_value' => variable_get('luxe_recover_title', 'Forgot your password?'),
   );
   
   return system_settings_form($form);
