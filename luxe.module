@@ -38,7 +38,16 @@ function luxe_form_alter(&$form, &$form_state, $form_id) {
       $form['lost_password'] = array(
         '#markup' => '<div class="login-forgot">' . l(t('No? Go log in then.'), 'user') . '</div>',
       );
-      
+      break;
+    case 'user_register_form':
+      $user_desc = variable_get('luxe_register_username_description', '');
+      if (!empty($user_desc)) {
+        $form['account']['name']['#description'] = variable_get('luxe_register_username_description', '');
+      }
+      $mail_desc = variable_get('luxe_register_mail_description', '');
+      if (!empty($mail_desc)) {
+        $form['account']['mail']['#description'] = variable_get('luxe_register_mail_description', '');
+      }
       break;
     }
 }
@@ -154,12 +163,35 @@ function luxe_admin_settings() {
     '#title' => t('Show full registration form on login page'),
     '#description' => t("Instead of just a link to the registration page, embed the whole registration form in the login page."),
   );
+  
+  $form['luxe_register'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Registration page settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
 
-  $form['luxe_register_title'] = array(
+  $form['luxe_register']['luxe_register_title'] = array(
     '#type' => 'textfield',
     '#multiple' => true,
     '#title' => t('Registration Form Title'),
     '#default_value' => variable_get('luxe_register_title', 'Sign up'),
+  );
+  
+  $form['luxe_register']['luxe_register_username_description'] = array(
+    '#type' => 'textfield',
+    '#multiple' => true,
+    '#title' => t('Registration Form Username Field Description'),
+    '#description' => t('The help text that appears under the username field in the registration form. Leave blank to use Drupal\'s build-in value.'),
+    '#default_value' => variable_get('luxe_register_username_description', ''),
+  );
+  
+  $form['luxe_register']['luxe_register_mail_description'] = array(
+    '#type' => 'textfield',
+    '#multiple' => true,
+    '#title' => t('Registration Form Email Field Description'),
+    '#description' => t('The help text that appears under the email field in the registration form. Leave blank to use Drupal\'s build-in value.'),
+    '#default_value' => variable_get('luxe_register_mail_description', ''),
   );
 
   $form['luxe_recover_title'] = array(
