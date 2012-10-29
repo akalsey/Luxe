@@ -58,7 +58,8 @@ function luxe_login_page() {
     drupal_goto('user/' . $user->uid);
   }
 
-  $login_form = drupal_render(drupal_get_form('user_login'));
+  $login_form = drupal_get_form('user_login');
+  $login_form = drupal_render($login_form);
   if (variable_get('luxe_login_register_form', 0)) {
     $register_form = drupal_get_form('user_register_form');
   } else {
