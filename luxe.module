@@ -64,7 +64,7 @@ function luxe_login_page() {
     $register_form = drupal_get_form('user_register_form');
   } else {
     $register_form = array(
-        '#method' => 'get',
+        '#method' => 'post',
         '#action' => url('user/register/'),
         '#form_id' => 'user_login_register',
         '#type' => 'form',
