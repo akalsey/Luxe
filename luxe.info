@@ -2,4 +2,5 @@ name = Luxe
 description = "Improve the user experience of the login and signup page."
 package = "User interface"
 stylesheets[all][] = "css/luxe.css"
+configure = admin/config/user-interface/luxe
 core = 7.x
